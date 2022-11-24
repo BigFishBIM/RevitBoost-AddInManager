@@ -48,6 +48,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboVersion = new System.Windows.Forms.ComboBox();
             this.btnAbout = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,10 +155,10 @@
             // btnEnDis
             // 
             this.btnEnDis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEnDis.Location = new System.Drawing.Point(810, 530);
+            this.btnEnDis.Location = new System.Drawing.Point(816, 530);
             this.btnEnDis.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEnDis.Name = "btnEnDis";
-            this.btnEnDis.Size = new System.Drawing.Size(156, 27);
+            this.btnEnDis.Size = new System.Drawing.Size(150, 27);
             this.btnEnDis.TabIndex = 1;
             this.btnEnDis.Text = "&Enable / Disable";
             this.btnEnDis.UseVisualStyleBackColor = true;
@@ -189,11 +190,11 @@
             // 
             // btnSelEnabled
             // 
-            this.btnSelEnabled.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSelEnabled.Location = new System.Drawing.Point(444, 530);
+            this.btnSelEnabled.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSelEnabled.Location = new System.Drawing.Point(450, 530);
             this.btnSelEnabled.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSelEnabled.Name = "btnSelEnabled";
-            this.btnSelEnabled.Size = new System.Drawing.Size(141, 27);
+            this.btnSelEnabled.Size = new System.Drawing.Size(140, 27);
             this.btnSelEnabled.TabIndex = 4;
             this.btnSelEnabled.Text = "&Select Enabled";
             this.btnSelEnabled.UseVisualStyleBackColor = true;
@@ -201,11 +202,11 @@
             // 
             // btnSelDis
             // 
-            this.btnSelDis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSelDis.Location = new System.Drawing.Point(593, 530);
+            this.btnSelDis.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSelDis.Location = new System.Drawing.Point(598, 530);
             this.btnSelDis.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSelDis.Name = "btnSelDis";
-            this.btnSelDis.Size = new System.Drawing.Size(141, 27);
+            this.btnSelDis.Size = new System.Drawing.Size(140, 27);
             this.btnSelDis.TabIndex = 5;
             this.btnSelDis.Text = "Select &Disabled";
             this.btnSelDis.UseVisualStyleBackColor = true;
@@ -244,11 +245,24 @@
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button1.Location = new System.Drawing.Point(302, 530);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 27);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "&Open Dictionary";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnOpen_Click);
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 571);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.cboVersion);
             this.Controls.Add(this.label1);
@@ -260,7 +274,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MinimumSize = new System.Drawing.Size(500, 47);
+            this.MinimumSize = new System.Drawing.Size(896, 47);
             this.Name = "Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RevitBoost - Addin Manager";
@@ -286,6 +300,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Version;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserSpecific;
         private System.Windows.Forms.DataGridViewTextBoxColumn AddinPath;
+        private System.Windows.Forms.Button button1;
     }
 }
 

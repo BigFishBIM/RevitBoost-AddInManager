@@ -101,7 +101,7 @@ namespace AddInManager
                     enabled = "yes";
 
                 if (version == cboVersion.Text || cboVersion.Text == "<all>")
-                    dataGridView1.Rows.Add(new string[] { name, user, enabled, version, file });
+                    dataGridView1.Rows.Add(new string[] { name, enabled, version, user, file });
 
                 if (!cboVersion.Items.Contains(version))
                 {
@@ -176,6 +176,15 @@ namespace AddInManager
                     row.Selected = false;
                 else
                     row.Selected = true;
+            }
+        }
+
+        private void btnOpen_Click(object sender,EventArgs e) {
+            foreach(DataGridViewRow row in dataGridView1.Rows) {
+                if (row.Selected) {
+                    var dir = Path.GetDirectoryName(row.Cells[4].Value.ToString());
+                    System.Diagnostics.Process.Start("explorer.exe",dir);
+                }
             }
         }
 

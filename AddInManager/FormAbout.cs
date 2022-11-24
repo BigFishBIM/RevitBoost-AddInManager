@@ -21,7 +21,7 @@ namespace AddInManager
             linkLabelStantec.Links.Add(llStantec);
 
             LinkLabel.Link llBoost = new LinkLabel.Link();
-            llBoost.LinkData ="https://github.com/BigFishBIM/";
+            llBoost.LinkData ="https://github.com/BigFishBIM/RevitBoost-AddInManager/";
             linkLabelBoost.Links.Add(llBoost);
         }
 
