@@ -11,17 +11,17 @@ using System.Windows.Forms;
 
 namespace AddInManager
 {
-    public partial class FormAbout : Form
+    public partial class FormAbout : System.Windows.Forms.Form
     {
         public FormAbout()
         {
             InitializeComponent();
             LinkLabel.Link llStantec = new LinkLabel.Link();
-            llStantec.LinkData = "http://www.stantec.com/";
+            llStantec.LinkData ="https://www.autodesk.com/products/revit/overview?term=1-YEAR&tab=subscription/";
             linkLabelStantec.Links.Add(llStantec);
 
             LinkLabel.Link llBoost = new LinkLabel.Link();
-            llBoost.LinkData = "https://boostyourbim.wordpress.com/";
+            llBoost.LinkData ="https://github.com/BigFishBIM/";
             linkLabelBoost.Links.Add(llBoost);
         }
 
