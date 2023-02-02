@@ -2,13 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace AddInManager
 {
-    public partial class Form : System.Windows.Forms.Form
+    public partial class Form: System.Windows.Forms.Form
     {
         public static string disabled = ".disabled";
+        /// <summary>
+        /// <see cref="https://learn.microsoft.com/zh-cn/dotnet/standard/base-types/character-classes-in-regular-expressions"/>
+        /// 匹配三个十进制数字：\d{4}
+        /// 匹配零个、一个或多个非十进制字符：\D*
+        /// </summary>
+        string pattern = @"\d{4}\D*";
         public Form()
         {
             InitializeComponent();
@@ -19,7 +28,7 @@ namespace AddInManager
         }
 
         private void buildGrid()
-        {          
+        {
             dataGridView1.Rows.Clear();
             IList<string> paths = new List<string>();
             paths.Add(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Autodesk", "Revit", "Addins"));
@@ -66,6 +75,19 @@ namespace AddInManager
                     if (s == Environment.UserName)
                     {
                         user = "yes";
+                    }
+                }
+
+                if (version == "")
+                {
+                    var fileName = Path.GetFileNameWithoutExtension(file);
+                    if (Regex.IsMatch(fileName, pattern))
+                    {
+                        var st = Regex.Match(fileName, pattern).Value.ToString();
+                        if (int.TryParse(st, out int d) && 2010 < d && d < 2025)
+                        {
+                            version = d.ToString();
+                        }
                     }
                 }
 
@@ -179,13 +201,20 @@ namespace AddInManager
             }
         }
 
-        private void btnOpen_Click(object sender,EventArgs e) {
-            foreach(DataGridViewRow row in dataGridView1.Rows) {
-                if (row.Selected) {
-                    var dir = Path.GetDirectoryName(row.Cells[4].Value.ToString());
-                    System.Diagnostics.Process.Start("explorer.exe",dir);
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            List<string> dirs = new List<string>();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    //var dir = Path.GetDirectoryName(row.Cells[4].Value.ToString());
+                    //System.Diagnostics.Process.Start("explorer.exe", dir);
+                    var dir = row.Cells[4].Value.ToString();
+                    dirs.Add(dir);
                 }
             }
+            OpenExplorer.OpenFolderAndSelectedFiles(dirs);
         }
 
         private void btnSelEnabled_Click(object sender, EventArgs e)
