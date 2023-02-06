@@ -12,12 +12,13 @@ namespace AddInManager
     public partial class Form: System.Windows.Forms.Form
     {
         public static string disabled = ".disabled";
+
         /// <summary>
         /// <see cref="https://learn.microsoft.com/zh-cn/dotnet/standard/base-types/character-classes-in-regular-expressions"/>
         /// 匹配三个十进制数字：\d{4}
-        /// 匹配零个、一个或多个非十进制字符：\D*
         /// </summary>
-        string pattern = @"\d{4}\D*";
+        string pattern = @"\d{4}";
+
         public Form()
         {
             InitializeComponent();
