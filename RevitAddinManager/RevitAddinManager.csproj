@@ -4,13 +4,14 @@
 	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
 	<PropertyGroup>
 		<UseWPF>true</UseWPF>
+		<LangVersion>10</LangVersion>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 		<ProjectGuid>{8647C8B1-EC8E-46A4-802F-5F884A3FD089}</ProjectGuid>
 		<OutputType>WinExe</OutputType>
 		<RootNamespace>RevitAddinManager</RootNamespace>
 		<AssemblyName>RevitAddinManager</AssemblyName>
-		<TargetFramework>net47</TargetFramework>
+		<TargetFramework>net48</TargetFramework>
 		<TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
 		<FileAlignment>512</FileAlignment>
 		<ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
