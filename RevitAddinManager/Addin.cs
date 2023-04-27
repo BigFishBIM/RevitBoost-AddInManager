@@ -8,82 +8,34 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace RevitAddinManager
 {
-    public class Addin : INotifyPropertyChanged
+    public sealed partial class Addin : ObservableObject
     {
-        private string _name;
+        [ObservableProperty]
+        private string fileName;
 
-        private string _version;
+        [ObservableProperty]
+        private string name;
 
-        private string _path;
+        [ObservableProperty]
+        private string version;
 
-        private string _enabled;
+        [ObservableProperty]
+        private string filepath;
 
-        private string _aa;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FileName))]
+        private bool enabled;
 
-        public Addin(string name, string version, string path, string enabled,string aa) : base()
+        public Addin(string name, string version, string path, bool enabled)
         {
-            _name = name;
-            _version = version;
-            _path = path;
-            _enabled = enabled;
+            this.filepath = path;
+            this.name = name;
+            this.version = version;
+            this.enabled = enabled;
+            this.fileName = System.IO.Path.GetFileName(path);
         }
 
-        public string Name
-        {
-            get { return  _name; }
-            set
-            {
-                _name = value;
-                OnPropertyChanged("Name");
-            }
-        }
+        //TODO: Enabled 改了之后，文件名跟着修改
 
-        public string Version
-        {
-            get { return _version; }
-            set
-            {
-                _version = value;
-                OnPropertyChanged("Version");
-            }
-        }
-
-        public string Path
-        {
-            get { return _path; }
-            set
-            {
-                _path = value;
-                OnPropertyChanged("Path");
-            }
-        }
-
-        public string Enabled
-        {
-            get { return _enabled; }
-            set
-            {
-                _enabled = value;
-                OnPropertyChanged("Enabled");
-            }
-        }
-
-        public string AA
-        {
-            get { return _aa; }
-            set
-            {
-                _aa  = value;
-                OnPropertyChanged("AA");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string info)
-        {
-            var handler = PropertyChanged;
-            handler?.Invoke(this, new PropertyChangedEventArgs(info));
-        }
     }
 }

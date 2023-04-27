@@ -7,52 +7,33 @@
         mc:Ignorable="d"
         Title="Revit Addin Manager" Height="450" Width="800" MinWidth="410">
 
-    <Window.Resources>        
-        <!--Label Style-->
+    <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
-        <!--DockPanel Style-->
         <Style TargetType="DockPanel">
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-        <!--TextBlock Style-->
         <Style TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-        <!--Button Style-->
         <Style TargetType="Button">
-            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Width" Value="60"/>
             <Setter Property="Height" Value="25"/>
         </Style>
-
         <local:Addins x:Key="Data"/>
-        <!--<DataTemplate x:Key="ListTemplate">
-            <Border Width="300" Height="100" Margin="20" BorderBrush="Aqua" BorderThickness="1" Padding="8">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
-            </Border>
-        </DataTemplate>-->
     </Window.Resources>
 
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-
         <Grid.Resources>
             <local:ViewModel x:Key="VM"></local:ViewModel>
         </Grid.Resources>
-
 
         <DockPanel Grid.Row="0" Margin="5 5 5 0">
             <DockPanel.DataContext>
@@ -61,25 +42,30 @@
             <DockPanel DockPanel.Dock="Left" Margin="0 0 5 0">
                 <!--<TextBlock Text="Revit版本: " />-->
                 <Label Content="Revit版本: " VerticalContentAlignment="Center" VerticalAlignment="Center"/>
-                <ComboBox Name="versionBox" SelectedIndex="0" Width="100" 
-                          ItemsSource="{Binding Path=VersionBox}"/>
+                <ComboBox Name="versionBox" SelectedIndex="0" Width="100" />
+                <Button Content="刷新" Name="Reflash" Click="Button_RefleshClick" Width="50" HorizontalAlignment="Right" Margin="10 0 0 0"/>
             </DockPanel>
             <Button Content="关于" Width="50" HorizontalAlignment="Right"/>
         </DockPanel>
 
         <DockPanel Grid.Row="1" Margin="5" VerticalAlignment="Top">
-            <DataGrid DockPanel.Dock="Top" ItemsSource="{Binding Source={StaticResource Data }}">
+            <DataGrid x:Name="list" DockPanel.Dock="Top" 
+                      ItemsSource="{Binding Source={StaticResource Data}}" 
+                      AutoGenerateColumns="False">
                 <DataGrid.Resources>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     </Style>
+                    <Style TargetType="TableCell">
+                        <Setter Property="Background" Value="Aqua"/>
+                    </Style>
                 </DataGrid.Resources>
-                <!--<DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Header="名称" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Width="50" Header="启用" Binding="{Binding Enabled}"/>
-                    <DataGridTextColumn Width="60" Header="版本" Binding="{Binding Version}"/>
-                    <DataGridTextColumn Width="3*" Header="位置" Binding="{Binding Path}"/>
-                </DataGrid.Columns>-->
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="启用" Binding="{Binding Enabled, Mode=TwoWay}" IsReadOnly="False"/>
+                    <DataGridTextColumn Width="*" Header="名称" Binding="{Binding Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="60" Header="版本" Binding="{Binding Version}" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="3*" Header="位置" Binding="{Binding Filepath}" IsReadOnly="True"/>
+                </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
 
@@ -98,7 +84,7 @@
                 <Button Content="选择禁用" Command="{Binding SelectDisabledCommand}"/>
             </DockPanel>
             <DockPanel HorizontalAlignment="Right">
-                <Button Content="打开目录" Margin="0 0 5 0" Command="{Binding OpenCommand}"/>
+                <Button Content="打开目录" Margin="0 0 5 0" Click="Button_OpenClick" Command="{Binding OpenCommand}"/>
                 <Button Content="启用/禁用" Command="{Binding EnableOrDisableCommand}"/>
             </DockPanel>
         </DockPanel>

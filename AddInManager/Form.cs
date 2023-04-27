@@ -137,7 +137,6 @@ namespace AddInManager
 
         private void btnEnDis_Click(object sender, EventArgs e)
         {
-
             string readonlyfiles = "";
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
